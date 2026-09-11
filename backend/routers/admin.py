@@ -262,3 +262,43 @@ def trigger_model_retrain(
 
     background_tasks.add_task(run_retrain)
     return {"status": "ok", "message": "El reentrenamiento de La Liga ha comenzado en segundo plano."}
+
+
+@router.post("/refresh-cache")
+def trigger_cache_refresh(
+    background_tasks: BackgroundTasks,
+    current_user: User = Depends(get_current_user)
+):
+    """Force an immediate cache refresh without redeploying."""
+    if not current_user.is_admin:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Acceso denegado.")
+
+    from core.cache_service import refresh_cache
+    background_tasks.add_task(refresh_cache)
+    return {"status": "ok", "message": "Refresh de caché iniciado en segundo plano."}
+
+
+@router.post("/run-etl")
+def trigger_etl(
+    background_tasks: BackgroundTasks,
+    current_user: User = Depends(get_current_user)
+):
+    """
+    Run the full ETL pipeline: fetch upcoming La Liga matches from Understat,
+    store them in DB, then refresh the prediction cache.
+    """
+    if not current_user.is_admin:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Acceso denegado.")
+
+    def run():
+        try:
+            from etl.run_etl import fetch_and_store_laliga_matches
+            fetch_and_store_laliga_matches()
+        except Exception as e:
+            import logging
+            logging.getLogger(__name__).error(f"ETL failed: {e}")
+        from core.cache_service import refresh_cache
+        refresh_cache()
+
+    background_tasks.add_task(run)
+    return {"status": "ok", "message": "ETL + refresh de caché iniciados en segundo plano."}

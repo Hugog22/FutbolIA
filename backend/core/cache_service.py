@@ -228,12 +228,13 @@ def _do_refresh() -> None:
         try:
             now        = datetime.utcnow()
             fourteen_days = now + timedelta(days=14)
+            # Fetch all upcoming matches — no JOIN to Odds required.
+            # Odds data is optional; the ML predictor generates probabilities from
+            # Elo ratings and xG statistics without needing bookmaker data.
             upcoming   = (
                 db.query(Match)
-                .join(Odds, (Odds.match_id == Match.id) & (Odds.market == "h2h"))
                 .filter(Match.date >= now, Match.date <= fourteen_days)
                 .order_by(Match.date.asc())
-                .distinct()
                 .all()
             )
 
