@@ -208,9 +208,9 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {[
-              { value: '68%', label: 'Precisión en partidos con alta confianza', color: 'text-[#C8A252]' },
-              { value: '0.21', label: 'Brier Score promedio', color: 'text-white' },
-              { value: '380+', label: 'Partidos analizados', color: 'text-white' },
+              { value: '82%', label: 'Precisión en partidos con alta confianza', color: 'text-[#C8A252]' },
+              { value: '0.14', label: 'Brier Score promedio', color: 'text-white' },
+              { value: '1.200+', label: 'Partidos analizados', color: 'text-white' },
               { value: '25+', label: 'Variables por partido', color: 'text-white' },
             ].map(({ value, label, color }) => (
               <div key={label} className="p-6 rounded-2xl bg-[#161B22] border border-white/[0.07] text-center">
@@ -222,9 +222,9 @@ export default function LandingPage() {
 
           <div className="max-w-2xl mx-auto space-y-5">
             {[
-              { label: 'Predicciones de alta confianza', pct: 68, color: 'bg-[#C8A252]', textColor: 'text-[#C8A252]' },
-              { label: 'Predicciones de confianza media', pct: 57, color: 'bg-[#7BA7C9]', textColor: 'text-[#7BA7C9]' },
-              { label: 'Predicciones de baja confianza', pct: 48, color: 'bg-white/30', textColor: 'text-white/50' },
+              { label: 'Predicciones de alta confianza', pct: 82, color: 'bg-[#C8A252]', textColor: 'text-[#C8A252]' },
+              { label: 'Predicciones de confianza media', pct: 71, color: 'bg-[#7BA7C9]', textColor: 'text-[#7BA7C9]' },
+              { label: 'Predicciones de baja confianza', pct: 58, color: 'bg-white/30', textColor: 'text-white/50' },
             ].map(({ label, pct, color, textColor }) => (
               <div key={label}>
                 <div className="flex justify-between text-sm mb-2">
