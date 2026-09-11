@@ -48,21 +48,9 @@ def _settle_and_refresh():
     except Exception as e:
         logger.warning(f"⚠️  [scheduler] Match stats sync failed: {e}", exc_info=True)
 
-    # ── Step 3: Settle bets on newly-finished matches ────────────────────────
-    from core.bet_settler import settle_pending_bets
+    # ── Step 3: Conditional cache refresh ───────────────────────────────────
     from core.cache_service import refresh_cache
-
-    bets_settled = 0
-    try:
-        summary = settle_pending_bets()
-        bets_settled = summary.get("settled", 0)
-        if bets_settled > 0:
-            logger.info(f"🔄 [scheduler] Settled {bets_settled} bets.")
-    except Exception as e:
-        logger.error(f"❌ [scheduler] settle_pending_bets failed: {e}", exc_info=True)
-
-    # ── Step 4: Conditional cache refresh ───────────────────────────────────
-    if bets_settled > 0 or laliga_updated > 0 or match_stats_updated > 0:
+    if laliga_updated > 0 or match_stats_updated > 0:
         try:
             logger.info("🔄 [scheduler] Triggering cache refresh.")
             refresh_cache()

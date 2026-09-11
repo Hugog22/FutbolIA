@@ -209,7 +209,7 @@ def _do_refresh() -> None:
 
     try:
         from db.session import SessionLocal
-        from db.models import Match, Bet, Odds
+        from db.models import Match
         from core.shared_predictor import predictor
         from core.match_evaluator import _evaluate_match
 
@@ -247,31 +247,6 @@ def _do_refresh() -> None:
 
                     if not result:
                         continue
-
-                    # Auto-track the system's value bet recommendation
-                    best_pick = result.get("bestPick")
-                    if best_pick and best_pick.get("isQuantStake"):
-                        existing_sys_bet = db.query(Bet).filter(
-                            Bet.user_id == None,
-                            Bet.match_id == m.id,
-                            Bet.market == best_pick["market"],
-                            Bet.selection == best_pick["outcome"]
-                        ).first()
-
-                        if not existing_sys_bet:
-                            sys_bet = Bet(
-                                user_id=None,
-                                match_id=m.id,
-                                bookmaker=result.get("oddsSource", "system"),
-                                market=best_pick["market"],
-                                selection=best_pick["outcome"],
-                                odds_taken=best_pick["bookmakerOdds"],
-                                stake=best_pick["stake"],
-                                status="Pending"
-                            )
-                            db.add(sys_bet)
-                            db.commit()
-                            logger.info(f"🤖 [cache] Auto-tracked system bet: {m.id} -> {best_pick['market']} {best_pick['outcome']} @ {best_pick['bookmakerOdds']}")
 
                 except Exception as e:
                     db.rollback()
