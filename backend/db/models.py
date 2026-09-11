@@ -10,7 +10,6 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
-    bankroll = Column(Float, default=1000.0)
     is_admin = Column(Boolean, default=False)
     reset_token_hash = Column(String, nullable=True)
     
@@ -23,8 +22,6 @@ class User(Base):
     free_analyses_used = Column(Integer, default=0, nullable=False, server_default='0')
     free_analyses_reset_at = Column(DateTime, nullable=True)  # start of current billing month
     unlocked_match_ids = Column(String, default="", server_default="") # comma-separated list of match IDs
-
-    bets = relationship("Bet", back_populates="user")
 
 class Team(Base):
     __tablename__ = "teams"
@@ -75,79 +72,6 @@ class Match(Base):
 
     home_team = relationship("Team", foreign_keys=[home_team_id])
     away_team = relationship("Team", foreign_keys=[away_team_id])
-
-class Odds(Base):
-    __tablename__ = "odds"
-
-    id = Column(Integer, primary_key=True, index=True)
-    match_id = Column(Integer, ForeignKey("matches.id"))
-    timestamp = Column(DateTime, default=datetime.utcnow)
-    
-    bookmaker = Column(String) # e.g., "bet365"
-    market = Column(String) # e.g., "h2h"
-    
-    home_odds = Column(Float)
-    draw_odds = Column(Float)
-    away_odds = Column(Float)
-
-    is_superboost = Column(Boolean, default=False)
-
-    match = relationship("Match")
-
-
-
-class MarketOdds(Base):
-    __tablename__ = "market_odds"
-
-    id = Column(Integer, primary_key=True, index=True)
-    match_id = Column(Integer, ForeignKey("matches.id"))
-    timestamp = Column(DateTime, default=datetime.utcnow)
-    
-    bookmaker = Column(String) # e.g., "bet365"
-    market_key = Column(String) # e.g., "btts", "double_chance"
-    outcome_name = Column(String) # e.g., "Yes", "Home/Draw"
-    
-    price = Column(Float)
-    point = Column(Float, nullable=True) # For spreads/totals
-
-    match = relationship("Match")
-
-class OddsHistory(Base):
-    __tablename__ = "odds_history"
-
-    id = Column(Integer, primary_key=True, index=True)
-    match_id = Column(Integer, ForeignKey("matches.id"))
-    timestamp = Column(DateTime, default=datetime.utcnow)
-    
-    bookmaker = Column(String) # e.g., "pinnacle", "bet365"
-    market = Column(String) # e.g., "h2h"
-    
-    home_odds = Column(Float)
-    draw_odds = Column(Float)
-    away_odds = Column(Float)
-
-    match = relationship("Match")
-
-class Bet(Base):
-    __tablename__ = "bets"
-
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=True) # Temporarily nullable for legacy bets
-    match_id = Column(Integer, ForeignKey("matches.id"))
-    placed_at = Column(DateTime, default=datetime.utcnow)
-    
-    bookmaker = Column(String)
-    market = Column(String)
-    selection = Column(String) # e.g., "Home", "Away", "Draw", "Over 2.5"
-    odds_taken = Column(Float)
-    stake = Column(Float)
-    
-    # Tracking fields
-    status = Column(String, default="Pending") # "Pending", "Won", "Lost", "Void"
-    clv = Column(Float, nullable=True) # Closing Line Value at the time of match start
-
-    match = relationship("Match")
-    user = relationship("User", back_populates="bets")
 
 class MatchTeamStatistics(Base):
     __tablename__ = "match_team_statistics"

@@ -31,7 +31,6 @@ from core.cache_service import get_cache, refresh_cache, is_cache_warm
 from core.subscription import is_pro, get_remaining_analyses, censor_match, FREE_MONTHLY_LIMIT
 
 # Routers
-from routers.bets import router as bets_router
 from routers.auth import router as auth_router
 from routers.admin import router as admin_router
 
@@ -45,7 +44,7 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     try:
-        logger.info("🚀 Starting Value Betting API…")
+        logger.info("🚀 Starting Sports Analytics API…")
         
         # Run Alembic migrations automatically
         try:
@@ -107,8 +106,8 @@ async def lifespan(app: FastAPI):
 # ---------------------------------------------------------------------------
 
 app = FastAPI(
-    title="Value Betting API",
-    description="API for predictive sports betting",
+    title="Sports Analytics API",
+    description="API for predictive sports analytics",
     version="5.0.0",
     lifespan=lifespan,
 )
@@ -123,7 +122,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(bets_router)
 app.include_router(auth_router)
 app.include_router(admin_router)
 
@@ -153,7 +151,7 @@ def health_check():
 
 @app.get("/")
 def read_root():
-    return {"status": "ok", "message": "Value Betting API v5 — Smart Schedule edition"}
+    return {"status": "ok", "message": "Sports Analytics API v5 — Smart Schedule edition"}
 
 
 # ---------------------------------------------------------------------------
@@ -263,40 +261,6 @@ def get_sport_jornada(
     return _apply_free_tier(matches, user, db)
 
 
-@app.get("/api/perfect_parlay")
-def get_perfect_parlay():
-    """Returns La Liga parlay (backward compat)."""
-    cache = get_cache()
-    parlay = cache.get("parlay", {})
-    if not parlay and not is_cache_warm():
-        return {"legs": [], "totalOdds": 1.0, "jointProbability": 0.0, "message": "Cache warming up…"}
-    return parlay
-
-
-@app.get("/api/{sport}/parlay")
-def get_sport_parlay(sport: str):
-    """Returns the CombinAIA for the given sport."""
-    if sport not in VALID_SPORTS:
-        from fastapi import HTTPException
-        raise HTTPException(status_code=404, detail=f"Sport '{sport}' not supported.")
-    cache = get_cache()
-    parlay = cache.get("sports", {}).get(sport, {}).get("parlay", {})
-    if not parlay and not is_cache_warm():
-        return {"legs": [], "totalOdds": 1.0, "jointProbability": 0.0, "message": "Cache warming up…"}
-    return parlay
-
-
-@app.get("/api/sports/all_parlays")
-def get_all_parlays():
-    """
-    Returns all active CombinAIas across every sport in a single call.
-    Each entry includes sport key, flag emoji, label, and parlay legs.
-    Frontend uses this to render the multi-parlay section.
-    """
-    cache = get_cache()
-    return cache.get("all_parlays", [])
-
-
 @app.get("/api/sports/status")
 def get_sports_status():
     """
@@ -305,12 +269,6 @@ def get_sports_status():
     """
     from core.cache_service import get_sport_info, SUPPORTED_SPORTS
     return {sk: get_sport_info(sk) for sk in SUPPORTED_SPORTS}
-
-
-@app.get("/api/super-boosts")
-def get_super_boosts():
-    cache = get_cache()
-    return cache.get("boosts", [])
 
 
 # ---------------------------------------------------------------------------
@@ -351,23 +309,6 @@ def unlock_match(
     db.commit()
     
     return {"success": True, "remaining": FREE_MONTHLY_LIMIT - user.free_analyses_used}
-
-@app.get("/api/matches/{match_id}/all_markets")
-def get_match_all_markets(match_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    from db.models import MarketOdds
-    odds = db.query(MarketOdds).filter(MarketOdds.match_id == match_id).all()
-    if not odds:
-        return {"error": "No odds found for this match"}
-    res: dict = {}
-    for o in odds:
-        if o.market_key not in res:
-            res[o.market_key] = {"bookmaker": o.bookmaker, "outcomes": []}
-        res[o.market_key]["outcomes"].append({
-            "name":  o.outcome_name,
-            "price": o.price,
-            "point": o.point,
-        })
-    return res
 
 
 # ---------------------------------------------------------------------------

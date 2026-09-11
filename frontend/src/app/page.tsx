@@ -531,12 +531,8 @@ export default function LandingPage() {
               a: 'Una value bet ocurre cuando la probabilidad real de un resultado es mayor que la probabilidad implícita en la cuota de la casa. En términos simples: la casa está equivocada y estás pagando más de lo que debería valer esa apuesta. Nuestro modelo calcula esas probabilidades de forma independiente.',
             },
             {
-              q: '¿El sistema garantiza ganancias?',
-              a: 'No. El análisis estadístico favorece al apostante a largo plazo, pero las apuestas deportivas conllevan riesgo. Ninguna herramienta puede garantizar ganancias. El objetivo es obtener edge estadístico en un volumen suficiente de apuestas, no ganar cada una individualmente.',
-            },
-            {
-              q: '¿Debo apostar a todas las value bets que señala el sistema?',
-              a: 'No necesariamente. El sistema clasifica cada predicción por nivel de riesgo (Bajo, Medio, Alto, Lotería). Te recomendamos centrarte en las de riesgo Bajo y gestionar siempre el bankroll con disciplina. Las de riesgo Alto tienen mayor edge potencial pero también mayor volatilidad.',
+              q: '¿Son infalibles las predicciones?',
+              a: 'No. El análisis estadístico predice el escenario más probable basándose en datos históricos y actuales, pero el deporte conlleva una varianza inherente. Ninguna herramienta puede predecir el futuro con 100% de exactitud. El objetivo es obtener métricas fiables de probabilidad.',
             },
             {
               q: '¿En qué deportes y competiciones funciona?',
@@ -544,11 +540,11 @@ export default function LandingPage() {
             },
             {
               q: '¿Con qué frecuencia se actualiza el modelo?',
-              a: 'El modelo se reentrena automáticamente tras cada jornada con los resultados más recientes. Los datos Elo de equipos se actualizan semanalmente. Las cuotas de mercado se monitorizan en tiempo real.',
+              a: 'El modelo se reentrena automáticamente tras cada jornada con los resultados más recientes. Los datos Elo de equipos y las métricas de rendimiento esperado (xG) se actualizan tras cada partido.',
             },
             {
               q: '¿Cómo funciona la prueba de 7 días?',
-              a: 'Al registrarte obtienes acceso completo durante 7 días sin coste. Al finalizar, si no cancelas, la suscripción se renueva a 9,99€/mes. Puedes cancelar en cualquier momento desde tu perfil, sin penalizaciones ni llamadas telefónicas.',
+              a: 'Al registrarte obtienes acceso completo durante 7 días sin coste. Al finalizar, si no cancelas, la suscripción se renueva a 9,99€/mes. Puedes cancelar en cualquier momento desde tu perfil, sin penalizaciones.',
             },
           ].map(({ q, a }) => (
             <details key={q} className="group py-6 cursor-pointer list-none">
@@ -572,12 +568,12 @@ export default function LandingPage() {
         <div className="relative max-w-3xl mx-auto">
           <p className="text-[#C8A252] text-xs font-bold uppercase tracking-[0.25em] mb-6">Empieza hoy</p>
           <h2 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
-            El mercado no espera.
+            El deporte no est azar.
             <br />
-            <span className="text-white/40">¿Lo harás tú?</span>
+            <span className="text-white/40">Son datos.</span>
           </h2>
           <p className="text-white/50 text-lg mb-10 max-w-xl mx-auto">
-            Únete a más de 500 inversores que ya utilizan datos cuantitativos para tomar mejores decisiones.
+            Únete a más de 500 analistas que ya utilizan ingeniería de datos cuantitativos para comprender el juego.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -605,9 +601,9 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
             {/* Brand */}
             <div>
-              <Image src="/logo.png" alt="QuantStake" width={160} height={44} className="h-9 w-auto object-contain brightness-0 invert mb-4" />
+              <Image src="/logo.png" alt="ValueBetAI" width={160} height={44} className="h-9 w-auto object-contain brightness-0 invert mb-4" />
               <p className="text-white/35 text-sm leading-relaxed max-w-xs">
-                Plataforma de análisis cuantitativo para detectar ineficiencias en el mercado de apuestas deportivas.
+                Plataforma científica de analítica predictiva de datos y machine learning aplicada al deporte.
               </p>
             </div>
 
@@ -617,7 +613,6 @@ export default function LandingPage() {
                 <p className="text-white/60 text-xs font-bold uppercase tracking-widest mb-4">Producto</p>
                 <ul className="space-y-3 text-sm text-white/35">
                   <li><a href="#como-funciona" className="hover:text-white transition-colors">Cómo funciona</a></li>
-                  <li><a href="#rendimiento" className="hover:text-white transition-colors">Rendimiento</a></li>
                   <li><a href="#precios" className="hover:text-white transition-colors">Precios</a></li>
                   <li><Link href="/register" className="hover:text-white transition-colors">Empezar gratis</Link></li>
                 </ul>
@@ -636,19 +631,18 @@ export default function LandingPage() {
             <div>
               <p className="text-white/60 text-xs font-bold uppercase tracking-widest mb-4">Aviso legal</p>
               <p className="text-white/25 text-xs leading-relaxed">
-                QuantStake es una herramienta de análisis estadístico. No somos una casa de apuestas ni gestionamos fondos de terceros. Las apuestas deportivas conllevan riesgo económico. Los rendimientos pasados no garantizan resultados futuros. Uso exclusivo para mayores de 18 años. Juega con responsabilidad.
+                Esta es una herramienta de análisis estadístico puramente informativa. No proporcionamos servicios de apuestas deportivas financieras ni consejos de inversión. Uso exclusivo para investigación y análisis de datos en el deporte.
               </p>
               <div className="flex items-center gap-3 mt-4">
-                <span className="px-2.5 py-1 rounded bg-white/[0.06] text-white/40 text-[10px] font-bold uppercase tracking-widest">+18</span>
                 <span className="px-2.5 py-1 rounded bg-white/[0.06] text-white/40 text-[10px] font-bold uppercase tracking-widest">RGPD</span>
-                <span className="px-2.5 py-1 rounded bg-white/[0.06] text-white/40 text-[10px] font-bold uppercase tracking-widest">No somos bookmaker</span>
+                <span className="px-2.5 py-1 rounded bg-white/[0.06] text-white/40 text-[10px] font-bold uppercase tracking-widest">Data Science</span>
               </div>
             </div>
           </div>
 
           <div className="pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row justify-between items-center gap-4 text-white/25 text-xs">
-            <span>© 2026 QuantStake. Todos los derechos reservados.</span>
-            <span>Hecho con datos · Find Your Edge</span>
+            <span>© 2026 SportsAnalytics. Todos los derechos reservados.</span>
+            <span>Impulsado por Machine Learning</span>
           </div>
         </div>
       </footer>
