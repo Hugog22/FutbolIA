@@ -125,8 +125,7 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(admin_router)
 
-from routers.stripe import router as stripe_router
-app.include_router(stripe_router)
+
 
 
 # ---------------------------------------------------------------------------
@@ -183,25 +182,9 @@ def _get_optional_user(
 
 
 def _apply_free_tier(matches: list, user, db) -> list:
-    """
-    For a free-tier user, mark matches beyond FREE_MONTHLY_LIMIT as locked
-    and strip their prediction data so clients cannot access it.
-
-    Security note: censoring is done SERVER-SIDE. The sensitive fields are
-    never included in the JSON response for locked matches.
-    """
-    if user is not None and is_pro(user):
-        # Pro users see everything unlocked.
-        for m in matches:
-            m["locked"] = False
-        return matches
-
-    if user is None:
-        # Unauthenticated requests see everything locked.
-        result = []
-        for match in matches:
-            result.append(censor_match(match))
-        return result
+    for m in matches:
+        m["locked"] = False
+    return matches
 
     # Free user — compute how many they've already unlocked this month.
     from core.subscription import reset_if_new_month

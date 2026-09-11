@@ -15,59 +15,56 @@ export default function RegisterPage() {
     const { login } = useAuth();
     const router = useRouter();
 
-    const handleSubmitEvent = async (e: React.FormEvent, isPro: boolean) => {
+    const handleSubmitEvent = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError('');
-
+        
         if (!acceptedTerms) {
-            setError('Debes aceptar los Términos y Condiciones para continuar.');
+            setError('Debes aceptar las condiciones.');
             return;
         }
 
         setIsSubmitting(true);
+        setError('');
+
         try {
-            const res = await fetch(`/api/proxy/auth/register`, {
+            const res = await fetch(`/api/auth/register`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                    name: "Usuario"
+                }),
             });
 
+            const data = await res.json();
             if (!res.ok) {
-                const errData = await res.json();
-                throw new Error(errData.detail || 'Error al registrar usuario');
+                throw new Error(data.detail || data.message || 'Error al registrar usuario');
             }
 
+            // Successful registration, login automatically
             const loginRes = await fetch(`/api/auth/login`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: JSON.stringify({ username: email, password })
+                body: new URLSearchParams({
+                    username: email,
+                    password: password,
+                }),
             });
 
             if (loginRes.ok) {
-                if (isPro) {
-                    await login(false); // Don't redirect to dashboard yet
-                    // Trigger Stripe Checkout
-                    const checkoutRes = await fetch(`/api/proxy/stripe/create-checkout-session`, {
-                        method: 'POST'
-                    });
-                    
-                    if (checkoutRes.ok) {
-                        const checkoutData = await checkoutRes.json();
-                        window.location.href = checkoutData.url;
-                    } else {
-                        // Fallback if Stripe fails
-                        router.push('/dashboard');
-                    }
-                } else {
-                    await login(true); // Login and redirect to dashboard
-                }
+                const loginData = await loginRes.json();
+                login(loginData.access_token);
+                router.push('/dashboard');
             } else {
-                router.push('/login');
+                router.push('/login?registered=true');
             }
         } catch (err: any) {
-            setError(err.message || 'Error al registrar usuario');
+            setError(err.message || 'Error de registro');
         }
     };
 
@@ -95,12 +92,12 @@ export default function RegisterPage() {
                     </h2>
                     <div className="mt-4 inline-flex items-center gap-2 bg-[#064E3B] text-slate-900 px-5 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg shadow-[#064E3B]/20">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#1B365D] animate-pulse"></div>
-                        7 días gratis — Cancela en cualquier momento
+                        Acceso libre — Portafolio Académico
                     </div>
                 </div>
 
                 <div className="bg-white p-10 rounded-[2.5rem] border border-[#E5E7EB] shadow-[0_20px_50px_rgba(0,0,0,0.04)]">
-                    <form className="space-y-6" onSubmit={(e) => handleSubmitEvent(e, true)}>
+                    <form className="space-y-6" onSubmit={handleSubmitEvent}>
                         {error && (
                             <div className="bg-red-50 border border-red-100 text-red-600 px-4 py-3 rounded-2xl text-xs font-bold uppercase tracking-widest text-center" role="alert">
                                 {error}
@@ -109,20 +106,20 @@ export default function RegisterPage() {
 
                         <div className="space-y-6">
                             <div>
-                                <label className="text-[10px] uppercase tracking-[0.2em] font-black text-[#64748B] block mb-2 ml-1">Correo Electrónico Oficial</label>
+                                <label className="text-[10px] uppercase tracking-[0.2em] font-black text-[#64748B] block mb-2 ml-1">Correo Electrónico</label>
                                 <input
                                     id="email-address"
                                     name="email"
                                     type="email"
                                     required
                                     className="appearance-none block w-full px-5 py-4 bg-[#F8F9FA] border border-[#E5E7EB] placeholder-[#94A3B8] text-[#1A1C1E] rounded-2xl focus:outline-none focus:border-slate-300 focus:ring-1 focus:ring-[#064E3B] transition-all font-medium"
-                                    placeholder="inversor@quantstake.ai"
+                                    placeholder="usuario@ejemplo.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
                             <div>
-                                <label className="text-[10px] uppercase tracking-[0.2em] font-black text-[#64748B] block mb-2 ml-1">Clave de Seguridad Robusta</label>
+                                <label className="text-[10px] uppercase tracking-[0.2em] font-black text-[#64748B] block mb-2 ml-1">Contraseña</label>
                                 <input
                                     id="password"
                                     name="password"
@@ -149,13 +146,13 @@ export default function RegisterPage() {
                             </div>
                             <div className="ml-3 text-xs">
                                 <label htmlFor="terms" className="font-medium text-[#64748B] cursor-pointer">
-                                    He leído y acepto los{' '}
+                                    Entiendo que este es un{' '}
                                     <Link href="/terminos" target="_blank" className="text-[#064E3B] hover:underline font-bold">
-                                        Términos y Condiciones
+                                        proyecto de portafolio sin fines de lucro
                                     </Link>{' '}
-                                    y la{' '}
+                                    y los datos son simulados o de investigación{' '}
                                     <Link href="/cookies" target="_blank" className="text-[#064E3B] hover:underline font-bold">
-                                        Política de Cookies
+                                        
                                     </Link>
                                 </label>
                             </div>
@@ -163,34 +160,12 @@ export default function RegisterPage() {
 
                         <div className="pt-4 space-y-3">
                             <button
-                                type="button"
-                                onClick={(e) => {
-                                    // Use a hidden input or state to track the choice, or just call handleSubmit with a parameter
-                                    handleSubmitEvent(e, true);
-                                }}
+                                type="submit"
                                 disabled={isSubmitting}
                                 className="w-full flex justify-center items-center py-5 px-4 bg-[#064E3B] text-white text-xs uppercase tracking-[0.2em] font-black rounded-2xl hover:bg-[#043327] shadow-xl shadow-[#064E3B]/20 transition-all active:scale-95 group disabled:opacity-70"
                             >
-                                {isSubmitting ? 'Procesando...' : 'Empezar 7 días gratis (PRO)'}
-                                {!isSubmitting && (
-                                    <svg className="w-4 h-4 ml-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 4v16m8-8H4" />
-                                    </svg>
-                                )}
+                                {isSubmitting ? 'Creando cuenta...' : 'Crear Cuenta'}
                             </button>
-                            <button
-                                type="button"
-                                onClick={(e) => {
-                                    handleSubmitEvent(e, false);
-                                }}
-                                disabled={isSubmitting}
-                                className="w-full flex justify-center items-center py-4 px-4 bg-transparent border-2 border-[#E5E7EB] text-[#64748B] text-[10px] uppercase tracking-[0.2em] font-black rounded-2xl hover:bg-[#F8F9FA] hover:text-[#1A1C1E] transition-all active:scale-95 disabled:opacity-70"
-                            >
-                                Continuar con Plan Básico (4 análisis/mes)
-                            </button>
-                            <p className="text-center text-[#94A3B8] text-[10px] mt-3 font-medium">
-                                El plan PRO cuesta 9,99€/mes tras la prueba. Cancela cuando quieras.
-                            </p>
                         </div>
                     </form>
                     
@@ -203,7 +178,7 @@ export default function RegisterPage() {
                 </div>
 
                 <p className="mt-12 text-center text-[#94A3B8] text-[9px] uppercase tracking-[0.4em] font-medium">
-                    Sistemas de Inversión QuantStake &copy; 2026
+                    Sports Analytics Portfolio &copy; 2026
                 </p>
             </div>
         </div>

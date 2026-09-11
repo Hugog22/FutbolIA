@@ -30,12 +30,6 @@ export default function Navbar() {
               >
                 Salir
               </button>
-              <Link 
-                href="/bankroll"
-                className="bg-[#1A1C1E] text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full text-[11px] md:text-sm font-bold tracking-tight hover:bg-[#064E3B] transition-all whitespace-nowrap"
-              >
-                Mi Perfil Digital
-              </Link>
             </div>
           ) : (
             <Link 

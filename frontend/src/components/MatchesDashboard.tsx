@@ -227,7 +227,7 @@ export default function MatchesDashboard({ initialMatches }: Props) {
                     </div>
                   )}
 
-                  {match.locked ? (
+                  {false ? (
                     <div className="flex-1 flex flex-col items-center justify-center py-6 mt-4 border-t border-white/5 relative">
                       <div className="w-12 h-12 rounded-full bg-[#C8A252]/10 border border-[#C8A252]/20 flex items-center justify-center mb-4">
                         <svg className="w-5 h-5 text-[#C8A252]" fill="none" stroke="currentColor" viewBox="0 0 24 24">

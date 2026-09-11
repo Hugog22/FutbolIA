@@ -96,7 +96,7 @@ export default function AnalysisModal({
 
             {/* Disclaimer */}
             <p className="text-[#94A3B8] text-[11px] mt-4 text-center leading-relaxed">
-              Predicción generada por modelo de IA. Las apuestas implican riesgo — apuesta con responsabilidad.
+              Predicción generada por modelo de IA. Uso exclusivo para investigación.
             </p>
           </div>
         </div>

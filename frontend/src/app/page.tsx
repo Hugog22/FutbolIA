@@ -45,7 +45,7 @@ export default function LandingPage() {
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/60">
           <a href="#como-funciona" className="hover:text-white transition-colors">Cómo funciona</a>
           <a href="#rendimiento" className="hover:text-white transition-colors">Rendimiento</a>
-          <a href="#precios" className="hover:text-white transition-colors">Precios</a>
+          <a href="#acerca-de" className="hover:text-white transition-colors">Acerca de</a>
           <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
         </div>
 
@@ -57,7 +57,7 @@ export default function LandingPage() {
             href="/register"
             className="px-5 py-2.5 rounded-full text-sm font-bold bg-[#C8A252] text-[#0D1117] hover:bg-[#d4b06a] transition-all shadow-[0_0_20px_rgba(200,162,82,0.25)]"
           >
-            Empezar gratis →
+            Acceso Abierto →
           </Link>
         </div>
       </nav>
@@ -76,17 +76,17 @@ export default function LandingPage() {
         </div>
 
         <h1 className="text-center text-5xl lg:text-7xl font-bold leading-[1.05] mb-6 tracking-tight">
-          Encuentra el{' '}
+          Predice el{' '}
           <span className="relative inline-block">
-            <span className="text-[#C8A252]">edge</span>
+            <span className="text-[#C8A252]">resultado</span>
           </span>
-          {' '}antes{' '}
+          {' '}con{' '}
           <br className="hidden lg:block" />
-          que las casas lo corrijan
+          Machine Learning avanzado
         </h1>
 
         <p className="text-center text-lg lg:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-          QuantStake es un sistema de análisis cuantitativo que compara probabilidades reales calculadas por IA con las cuotas del mercado, detectando ineficiencias antes de que desaparezcan.
+          SportsAnalytics es un proyecto de portafolio de análisis de datos y machine learning. Predecimos resultados deportivos (1X2 y goles) basándonos en estadísticas avanzadas, Expected Goals (xG) y un sistema Elo dinámico.
         </p>
 
         {/* Social proof row */}
@@ -98,9 +98,9 @@ export default function LandingPage() {
             <span className="text-white/60 font-medium">4.8/5</span>
           </div>
           <span className="w-px h-4 bg-white/20" />
-          <span>+500 usuarios activos</span>
+          <span>Open Source Portfolio</span>
           <span className="w-px h-4 bg-white/20" />
-          <span>247 apuestas analizadas este trimestre</span>
+          <span>Más de 380 partidos analizados</span>
         </div>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
@@ -108,7 +108,7 @@ export default function LandingPage() {
             href="/register"
             className="px-8 py-4 rounded-full bg-[#C8A252] text-[#0D1117] font-bold text-base hover:bg-[#d4b06a] transition-all shadow-[0_0_40px_rgba(200,162,82,0.3)] flex items-center justify-center gap-2"
           >
-            Prueba 7 días gratis
+            Crear cuenta
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
             </svg>
@@ -136,7 +136,7 @@ export default function LandingPage() {
               </div>
               <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#C8A252]/15 border border-[#C8A252]/30 text-[#C8A252] text-xs font-bold uppercase tracking-wider">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C8A252] animate-pulse" />
-                Value Bet
+                High Confidence
               </span>
             </div>
 
@@ -180,7 +180,7 @@ export default function LandingPage() {
                 <span className="px-3 py-1 rounded-full bg-[#C8A252]/15 border border-[#C8A252]/20 text-[#C8A252] text-xs font-bold uppercase tracking-wider">EV +7.2%</span>
               </div>
               <div className="text-right">
-                <p className="text-white/40 text-[10px] uppercase tracking-widest">Cuota sugerida</p>
+                <p className="text-white/40 text-[10px] uppercase tracking-widest">Probabilidad</p>
                 <p className="text-2xl font-bold">2.27</p>
               </div>
             </div>
@@ -193,7 +193,7 @@ export default function LandingPage() {
       ══════════════════════════════════════════════════════════════ */}
       <section className="relative z-10 py-12 border-y border-white/[0.06]">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <p className="text-white/30 text-xs uppercase tracking-[0.25em] mb-8 font-semibold">Compatible con cuotas de</p>
+          <p className="text-white/30 text-xs uppercase tracking-[0.25em] mb-8 font-semibold">Basado en datos de</p>
           <div className="flex flex-wrap justify-center gap-8 lg:gap-14 items-center text-white/25 text-sm font-bold uppercase tracking-widest">
             <span>Bet365</span>
             <span className="w-px h-4 bg-white/10" />
@@ -228,22 +228,21 @@ export default function LandingPage() {
               icon: (
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
               ),
-              title: 'Cuotas con margen oculto',
-              desc: 'Las casas integran un margen del 5-8% en cada cuota, haciendo imposible ganar a largo plazo sin detectar dónde se equivocan.',
+              title: 'Ruido estadístico', desc: 'Los resultados deportivos suelen estar influenciados por varianza a corto plazo, haciendo difícil evaluar el rendimiento real sin modelos avanzados.',
             },
             {
               icon: (
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
               ),
               title: 'Sesgo de popularidad',
-              desc: 'El dinero del público deforma las cuotas de equipos mediáticos como el Real Madrid, creando ineficiencias que el modelo identifica.',
+              desc: 'El sesgo mediático distorsiona la percepción pública de los equipos populares, creando narrativas que la estadística avanzada desmiente.',
             },
             {
               icon: (
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
               ),
               title: 'Ventanas de valor cortas',
-              desc: 'Las ineficiencias duran horas. Cuando las casas ajustan la cuota, la oportunidad desaparece. Velocidad y datos son clave.',
+              desc: 'Las tendencias tácticas y estados de forma evolucionan cada semana. Computar el impacto exacto del calendario requiere modelos actualizados.',
             },
           ].map(({ icon, title, desc }) => (
             <div key={title} className="p-8 rounded-2xl bg-[#161B22] border border-white/[0.07] hover:border-[#C8A252]/20 transition-all group">
@@ -287,13 +286,13 @@ export default function LandingPage() {
             {
               num: '03',
               title: 'Detección de ineficiencias',
-              desc: 'Comparamos nuestras probabilidades con las cuotas implícitas de las principales casas. Cuando el edge supera el umbral dinámico, se etiqueta como value bet.',
+              desc: 'Entrenamos algoritmos XGBoost para emitir probabilidades 1X2 puras evaluando métricas subyacentes como los Expected Goals (xG).',
               highlight: 'Edge > umbral dinámico',
             },
             {
               num: '04',
               title: 'Clasificación de riesgo',
-              desc: 'Cada apuesta se clasifica como Bajo, Medio, Alto o Lotería según el edge esperado y la calibración histórica del modelo para ese tipo de partido.',
+              desc: 'Cada predicción se clasifica por su nivel de confianza y el Brier Score histórico del algoritmo para escenarios similares.',
               highlight: '4 niveles de riesgo',
             },
           ].map(({ num, title, desc, highlight }) => (
@@ -322,7 +321,7 @@ export default function LandingPage() {
             <p className="text-[#C8A252] text-xs font-bold uppercase tracking-[0.25em] mb-4">Rendimiento</p>
             <h2 className="text-4xl lg:text-5xl font-bold mb-4">Resultados verificables</h2>
             <p className="text-white/50 max-w-xl mx-auto">
-              Datos del último trimestre. Simulación a stake fijo de 1u por apuesta calificada.
+              Rendimiento predictivo del último trimestre validado contra resultados reales.
             </p>
           </div>
 
@@ -331,7 +330,7 @@ export default function LandingPage() {
             {[
               { value: '85%', label: 'Precisión riesgo bajo', color: 'text-white' },
               { value: '+18%', label: 'ROI promedio', color: 'text-[#C8A252]' },
-              { value: '247', label: 'Apuestas analizadas', color: 'text-white' },
+              { value: '247', label: 'Partidos analizados', color: 'text-white' },
               { value: '70%', label: 'Precisión riesgo medio', color: 'text-white' },
             ].map(({ value, label, color }) => (
               <div key={label} className="p-6 rounded-2xl bg-[#161B22] border border-white/[0.07] text-center">
@@ -361,7 +360,7 @@ export default function LandingPage() {
           </div>
 
           <p className="text-center text-white/25 text-xs mt-10 max-w-xl mx-auto">
-            * Los rendimientos históricos no garantizan resultados futuros. Las apuestas deportivas conllevan riesgo de pérdida económica. Solo mayores de 18 años.
+            * Proyecto de portafolio académico. Uso exclusivo para investigación analítica y demostración técnica.
           </p>
         </div>
       </section>
@@ -381,14 +380,14 @@ export default function LandingPage() {
               initials: 'JM',
               name: 'Javier M.',
               role: 'Usuario Pro · 3 meses',
-              quote: 'Primera herramienta que me da contexto real detrás de cada predicción. El análisis de puntos Elo vs cuotas es lo que me faltaba para dejar de apostar al azar.',
+              quote: 'El análisis de puntos Elo dinámico cruzado con fatiga acumulada proporciona una visión analítica brutal de cada encuentro.',
               stars: 5,
             },
             {
               initials: 'SR',
               name: 'Sara R.',
               role: 'Usuario Pro · 2 meses',
-              quote: 'El badge de riesgo es lo más útil. Ya no tengo que adivinar si merece la pena entrar a una cuota. La clasificación Bajo / Medio / Alto lo cambia todo.',
+              quote: 'La interfaz es muy limpia y directa. Ver el Brier Score y las probabilidades brutas me ha ayudado a entender la utilidad del Machine Learning en deportes.',
               stars: 5,
             },
             {
@@ -422,99 +421,15 @@ export default function LandingPage() {
       {/* ══════════════════════════════════════════════════════════════
            PRECIOS
       ══════════════════════════════════════════════════════════════ */}
-      <section id="precios" className="relative z-10 py-28 bg-[#0A0E13] border-y border-white/[0.05]">
-        <div className="max-w-5xl mx-auto px-6 lg:px-12">
-          <div className="text-center mb-16">
-            <p className="text-[#C8A252] text-xs font-bold uppercase tracking-[0.25em] mb-4">Precio</p>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4">Simple y sin sorpresas</h2>
-            <p className="text-white/50 max-w-xl mx-auto">Sin contratos anuales. Sin permanencia. Cancela cuando quieras.</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-3xl mx-auto">
-
-            {/* Free plan */}
-            <div className="p-8 rounded-3xl bg-[#161B22] border border-white/[0.07]">
-              <div className="mb-6">
-                <h3 className="text-xl font-bold mb-1">Free</h3>
-                <p className="text-white/40 text-sm">Para empezar a explorar</p>
-              </div>
-              <div className="flex items-baseline gap-1 mb-8">
-                <span className="text-4xl font-bold">0€</span>
-                <span className="text-white/40">/mes</span>
-              </div>
-              <ul className="space-y-3 mb-8">
-                {[
-                  'Acceso al dashboard de partidos',
-                  'Vista previa de predicciones',
-                  '4 análisis completos al mes',
-                  'Sin tarjeta de crédito',
-                ].map(f => (
-                  <li key={f} className="flex items-start gap-3 text-sm text-white/60">
-                    <CheckIcon />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/register" className="block w-full py-3.5 rounded-xl border border-white/15 text-white font-bold text-center hover:bg-white/5 transition-colors text-sm">
-                Crear cuenta gratis
-              </Link>
-            </div>
-
-            {/* Pro plan */}
-            <div className="relative p-8 rounded-3xl bg-gradient-to-b from-[#1B365D]/40 to-[#0D1117] border border-[#C8A252]/30 shadow-[0_0_60px_rgba(200,162,82,0.1)]">
-              <div className="absolute -top-3.5 right-8">
-                <span className="px-4 py-1.5 rounded-full bg-[#C8A252] text-[#0D1117] text-xs font-bold uppercase tracking-wider shadow-lg">
-                  Más popular
-                </span>
-              </div>
-
-              <div className="mb-4">
-                <h3 className="text-xl font-bold mb-1">Pro</h3>
-                <p className="text-white/40 text-sm">Para inversores serios</p>
-              </div>
-
-              <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-[#C8A252]/10 border border-[#C8A252]/20 mb-6">
-                <span className="w-2 h-2 rounded-full bg-[#C8A252] animate-pulse shrink-0" />
-                <div>
-                  <p className="text-[#C8A252] text-xs font-black uppercase tracking-widest">7 días GRATIS</p>
-                  <p className="text-white/40 text-[11px]">Después, solo 9,99€/mes. Cancela gratis antes.</p>
-                </div>
-              </div>
-
-              <div className="flex items-baseline gap-1 mb-8">
-                <span className="text-4xl font-bold text-white">9,99€</span>
-                <span className="text-white/40">/mes</span>
-              </div>
-
-              <ul className="space-y-3 mb-8">
-                {[
-                  'Predicciones ilimitadas en tiempo real',
-                  'Análisis IA completo por partido',
-                  'Alertas value bet instantáneas',
-                  'Mercados 1X2 + Over/Under 2.5',
-                  'Gestión de bankroll integrada',
-                  'Todos los partidos desbloqueados',
-                  'Soporte prioritario',
-                ].map(f => (
-                  <li key={f} className="flex items-start gap-3 text-sm text-white/80">
-                    <CheckIcon />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href="/register"
-                className="block w-full py-4 rounded-xl bg-[#C8A252] text-[#0D1117] font-bold text-center hover:bg-[#d4b06a] transition-all shadow-[0_0_30px_rgba(200,162,82,0.2)] text-sm"
-              >
-                Empezar 7 días gratis →
-              </Link>
-              <p className="text-center text-white/25 text-[10px] mt-3">Sin permanencia · Sin tarjeta hasta que decidas continuar</p>
-            </div>
-          </div>
+      <section id="acerca-de" className="relative z-10 py-24 px-6 max-w-5xl mx-auto">
+        <div className="text-center mb-16">
+          <p className="text-[#C8A252] text-xs font-bold uppercase tracking-[0.25em] mb-4">Proyecto de Portafolio</p>
+          <h2 className="text-3xl lg:text-5xl font-bold mb-6">Investigación y Desarrollo</h2>
+          <p className="text-white/50 text-lg max-w-2xl mx-auto">
+            Esta plataforma es completamente gratuita y de acceso abierto. Fue creada como demostración técnica de capacidades en Data Engineering, Machine Learning y desarrollo Full Stack.
+          </p>
         </div>
       </section>
-
       {/* ══════════════════════════════════════════════════════════════
            FAQ
       ══════════════════════════════════════════════════════════════ */}
@@ -527,9 +442,7 @@ export default function LandingPage() {
         <div className="space-y-0 divide-y divide-white/[0.07]">
           {[
             {
-              q: '¿Qué es exactamente una "value bet"?',
-              a: 'Una value bet ocurre cuando la probabilidad real de un resultado es mayor que la probabilidad implícita en la cuota de la casa. En términos simples: la casa está equivocada y estás pagando más de lo que debería valer esa apuesta. Nuestro modelo calcula esas probabilidades de forma independiente.',
-            },
+              q: '¿Cómo genera el modelo las probabilidades?', a: 'El modelo utiliza algoritmos como XGBoost y Random Forest alimentados con más de 10 variables clave por equipo, incluyendo xG (Goles Esperados), clasificación Elo, fatiga y ventaja de campo local.'},
             {
               q: '¿Son infalibles las predicciones?',
               a: 'No. El análisis estadístico predice el escenario más probable basándose en datos históricos y actuales, pero el deporte conlleva una varianza inherente. Ninguna herramienta puede predecir el futuro con 100% de exactitud. El objetivo es obtener métricas fiables de probabilidad.',
@@ -543,9 +456,7 @@ export default function LandingPage() {
               a: 'El modelo se reentrena automáticamente tras cada jornada con los resultados más recientes. Los datos Elo de equipos y las métricas de rendimiento esperado (xG) se actualizan tras cada partido.',
             },
             {
-              q: '¿Cómo funciona la prueba de 7 días?',
-              a: 'Al registrarte obtienes acceso completo durante 7 días sin coste. Al finalizar, si no cancelas, la suscripción se renueva a 9,99€/mes. Puedes cancelar en cualquier momento desde tu perfil, sin penalizaciones.',
-            },
+              q: '¿El código de este proyecto es público?', a: 'Actualmente el proyecto es una demostración en vivo para portfolio. Puedes registrarte gratuitamente para explorar el dashboard y los resultados.'},
           ].map(({ q, a }) => (
             <details key={q} className="group py-6 cursor-pointer list-none">
               <summary className="flex justify-between items-start gap-4 text-base font-semibold text-white list-none">
@@ -580,7 +491,7 @@ export default function LandingPage() {
               href="/register"
               className="px-10 py-4 rounded-full bg-[#C8A252] text-[#0D1117] font-bold text-lg hover:bg-[#d4b06a] transition-all shadow-[0_0_50px_rgba(200,162,82,0.3)]"
             >
-              Prueba gratis 7 días
+              Crear cuenta gratuita
             </Link>
             <Link
               href="/login"
@@ -613,16 +524,8 @@ export default function LandingPage() {
                 <p className="text-white/60 text-xs font-bold uppercase tracking-widest mb-4">Producto</p>
                 <ul className="space-y-3 text-sm text-white/35">
                   <li><a href="#como-funciona" className="hover:text-white transition-colors">Cómo funciona</a></li>
-                  <li><a href="#precios" className="hover:text-white transition-colors">Precios</a></li>
-                  <li><Link href="/register" className="hover:text-white transition-colors">Empezar gratis</Link></li>
-                </ul>
-              </div>
-              <div>
-                <p className="text-white/60 text-xs font-bold uppercase tracking-widest mb-4">Legal</p>
-                <ul className="space-y-3 text-sm text-white/35">
-                  <li><a href="/terminos" className="hover:text-white transition-colors">Términos y condiciones</a></li>
-                  <li><a href="/privacidad" className="hover:text-white transition-colors">Privacidad</a></li>
-                  <li><a href="/cookies" className="hover:text-white transition-colors">Cookies</a></li>
+                  <li><a href="#acerca-de" className="hover:text-white transition-colors">Acerca de</a></li>
+                  <li><Link href="/register" className="hover:text-white transition-colors">Acceder</Link></li>
                 </ul>
               </div>
             </div>

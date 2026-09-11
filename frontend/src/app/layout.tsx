@@ -18,8 +18,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "QuantStake | Find Your Edge · Análisis cuantitativo de apuestas",
-  description: "QuantStake detecta value bets en tiempo real usando IA. Compara probabilidades reales con las cuotas del mercado y encuentra el edge antes de que desaparezca.",
+  title: "Sports Analytics | Machine Learning aplicado al fútbol",
+  description: "Proyecto de portfolio que predice los resultados de partidos de fútbol usando Inteligencia Artificial, Expected Goals y un sistema Elo dinámico.",
 };
 
 import { AuthProvider } from "@/context/AuthContext";

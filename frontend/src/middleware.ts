@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
     const { pathname, search } = request.nextUrl;
 
     // 1. Protect Frontend Routes (CRIT-10)
-    if (pathname.startsWith('/dashboard') || pathname.startsWith('/bankroll')) {
+    if (pathname.startsWith('/dashboard')) {
         if (!token) {
             return NextResponse.redirect(new URL('/login', request.url));
         }
@@ -41,5 +41,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/dashboard/:path*', '/bankroll/:path*', '/api/proxy/:path*'],
+  matcher: ['/dashboard/:path*', '/api/proxy/:path*'],
 };
