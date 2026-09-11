@@ -57,7 +57,7 @@ export default function ForgotPasswordPage() {
             <div className="max-w-md w-full z-10">
                 <div className="text-center mb-12">
                     <Link href="/" className="inline-flex flex-col items-center gap-3 group">
-                        <Image src="/logo.png" alt="QuantStake Logo" width={240} height={70} className="h-16 w-auto object-contain group-hover:scale-105 transition-transform" priority />
+                        <Image src="/logo.png" alt="FutbolIA" width={240} height={70} className="h-16 w-auto object-contain group-hover:scale-105 transition-transform" priority />
                     </Link>
                     <h2 className="mt-8 text-4xl font-editorial font-bold text-[#1A1C1E]">
                         Recuperar <span className="italic font-light">Acceso</span>
@@ -89,7 +89,7 @@ export default function ForgotPasswordPage() {
                                     type="email"
                                     required
                                     className="appearance-none block w-full px-5 py-4 bg-[#F8F9FA] border border-[#E5E7EB] placeholder-[#94A3B8] text-[#1A1C1E] rounded-2xl focus:outline-none focus:border-[#064E3B] focus:ring-1 focus:ring-[#064E3B] transition-all font-medium"
-                                    placeholder="inversor@quantstake.ai"
+                                    placeholder="usuario@ejemplo.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
@@ -114,7 +114,7 @@ export default function ForgotPasswordPage() {
                 </div>
 
                 <p className="mt-12 text-center text-[#94A3B8] text-[9px] uppercase tracking-[0.4em] font-medium">
-                    Sistemas de Inversión QuantStake &copy; 2026
+                    FutbolIA &copy; 2026
                 </p>
             </div>
         </div>

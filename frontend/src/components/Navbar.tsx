@@ -9,22 +9,20 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 w-full z-50 glass-light overflow-x-auto scrollbar-hide">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex justify-between items-center transition-all min-w-max md:min-w-0 gap-6 md:gap-0">
-        {/* Logo and Nav links */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex justify-between items-center min-w-max md:min-w-0 gap-6 md:gap-0">
         <div className="flex items-center gap-6 md:gap-10">
-          <Link href="/" className="flex items-center shrink-0"><Image src="/logo.png" alt="QuantStake Logo" width={160} height={40} className="h-8 w-auto object-contain" priority /></Link>
+          <Link href="/" className="flex items-center shrink-0">
+            <Image src="/logo.png" alt="FutbolIA" width={160} height={40} className="h-8 w-auto object-contain" priority />
+          </Link>
           <nav className="flex items-center gap-4 md:gap-8 text-xs md:text-sm font-semibold text-[#1A1C1E]/60 shrink-0">
-            <Link href="/" className="text-[#1A1C1E] underline decoration-2 underline-offset-8 decoration-[#FFD700]">Inicio</Link>
-            <Link href="#radar-de-valor" className="hover:text-[#1A1C1E] transition-colors">Análisis</Link>
-            <Link href="#explorar-mercados" className="hover:text-[#1A1C1E] transition-colors">Mercados</Link>
+            <Link href="/dashboard" className="hover:text-[#1A1C1E] transition-colors">Predicciones</Link>
           </nav>
         </div>
 
-        {/* Search and Auth */}
         <div className="flex items-center gap-4 md:gap-6 flex-1 justify-end shrink-0 pr-4 md:pr-0">
           {user ? (
             <div className="flex items-center gap-4">
-              <button 
+              <button
                 onClick={logout}
                 className="text-[10px] md:text-xs font-bold text-[#1A1C1E]/60 hover:text-red-600 transition-colors uppercase tracking-widest"
               >
@@ -32,9 +30,9 @@ export default function Navbar() {
               </button>
             </div>
           ) : (
-            <Link 
+            <Link
               href="/login"
-              className="bg-[#1A1C1E] text-white px-8 py-3 rounded-full text-sm font-bold tracking-tight hover:bg-[#064E3B] transition-all flex items-center gap-2"
+              className="bg-[#1A1C1E] text-white px-8 py-3 rounded-full text-sm font-bold tracking-tight hover:bg-[#2d3035] transition-all flex items-center gap-2"
             >
               <span>Acceder</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,4 +45,3 @@ export default function Navbar() {
     </header>
   );
 }
-

@@ -1,13 +1,13 @@
 """
 scheduler.py
 -------------
-Background APScheduler para QuantStake — HuggingFace (16 GB RAM, always-on).
+Background APScheduler para FutbolIA — HuggingFace (16 GB RAM, always-on).
 
 Schedule:
   - ETL diario:      04:00 AM Madrid — sincroniza partidos de La Liga (Understat).
   - Retrain IA:      04:30 AM Madrid — reentrena el modelo XGBoost de La Liga.
   - Cache refresh:   Cada 2 horas 24/7 — 12 refrescos/día × 1 API call/refresco = 360 créditos/mes.
-  - Bet settlement:  Cada hora (xx:05) — liquida apuestas en partidos finalizados.
+  - Sincronización de datos activa.
 
 All times are in Europe/Madrid timezone.
 """

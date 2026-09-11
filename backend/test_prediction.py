@@ -3,7 +3,7 @@ import os
 
 sys.path.insert(0, os.path.abspath('backend'))
 from core.match_evaluator import _evaluate_match
-from models.predictor import QuantStakePredictor
+from models.predictor import FootballPredictor
 
 class MockTeam:
     def __init__(self, name):
@@ -16,7 +16,7 @@ class MockMatch:
         self.away_team = MockTeam(b)
 
 if __name__ == "__main__":
-    predictor = QuantStakePredictor()
+    predictor = FootballPredictor()
     predictor.load_model()
     
     from core.match_evaluator import _build_match_features

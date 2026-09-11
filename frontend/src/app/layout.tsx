@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,14 +12,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Sports Analytics | Machine Learning aplicado al fútbol",
-  description: "Proyecto de portfolio que predice los resultados de partidos de fútbol usando Inteligencia Artificial, Expected Goals y un sistema Elo dinámico.",
+  title: "FutbolIA | Predicción de fútbol con Machine Learning",
+  description: "Sistema de predicción de resultados de La Liga basado en modelos XGBoost, Expected Goals (xG) y clasificaciones Elo dinámicas. Probabilidades 1X2 calculadas a partir de datos reales.",
 };
 
 import { AuthProvider } from "@/context/AuthContext";
@@ -31,9 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="es" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased bg-[#0D1117] text-white selection:bg-[#C8A252]/20`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0D1117] text-white selection:bg-[#C8A252]/20`}
       >
         <AuthProvider>
           {children}
