@@ -47,7 +47,6 @@ interface Match {
 
 interface Props {
   initialMatches: Match[];
-  initialParlay: any | null;
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
